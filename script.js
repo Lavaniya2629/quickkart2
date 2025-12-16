@@ -39,4 +39,32 @@ if(bestPrev && bestNext && bestSlider) {
   setInterval(()=> { bestSlider.scrollBy({left:220, behavior:'smooth'}); }, 3500);
 }
 
+
 </script>
+
+
+// slider arrow behavior for ALL slider wrappers
+document.querySelectorAll('.product-slider-wrapper').forEach(wrapper => {
+  const row = wrapper.querySelector('.product-row');
+  const btnPrev = wrapper.querySelector('.arrow.left');
+  const btnNext = wrapper.querySelector('.arrow.right');
+
+  // if arrows missing just return
+  if (!row || !btnPrev || !btnNext) return;
+
+  btnPrev.addEventListener('click', () => {
+    row.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+  btnNext.addEventListener('click', () => {
+    row.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+
+  // optional: show/hide arrows when start/end
+  const updateArrows = () => {
+    btnPrev.style.opacity = row.scrollLeft > 10 ? '1' : '0.4';
+    btnNext.style.opacity = row.scrollWidth - row.clientWidth - row.scrollLeft > 10 ? '1' : '0.4';
+  };
+  row.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+});

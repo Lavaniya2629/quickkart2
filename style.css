@@ -8,6 +8,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #F7F8FA;
+    padding-bottom: 120px; /* ensure footer gap */
 }
 
 /* ========================================
@@ -29,8 +30,9 @@ body {
     gap: 18px;
 }
 
-.logo-img {
-    height: 45px;
+.left-section img {
+    height: 35px;   /* adjust size */
+    width: auto;
 }
 
 .logo {
@@ -165,19 +167,18 @@ body {
 /* ========================================
    MAIN CATEGORY SLIDER (MULTI ROW)
 ======================================== */
-/* MAIN CATEGORY SLIDER FIXED */
 .main-category-slider {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;   /* Center all items neatly */
-    gap: 30px;                 /* Increase spacing to look clean */
+    justify-content: center;
+    gap: 30px;
     padding: 25px 12px;
     background: #ffffff;
 }
 
 .main-cat-item {
     text-align: center;
-    width: 95px;               /* Slightly bigger cards */
+    width: 95px;
 }
 
 .main-cat-item img {
@@ -231,7 +232,7 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: #111;            /* Black circle */
+    background: #111;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,7 +241,7 @@ body {
 }
 
 .footer-social a i {
-    color: #fff;                 /* White icon */
+    color: #fff;
     font-size: 20px;
 }
 
@@ -272,4 +273,101 @@ body {
     .footer-social {
         justify-content: flex-start;
     }
+
+    .search-box input { width: 60%; }
+}
+
+/* --- Category / slider layout fixes --- */
+.category-section {
+  padding: 10px 20px !important;
+  background: #F7F8FA;
+  margin-bottom: 20px !important;  
+}
+
+
+/* header row */
+.cat-header, .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.cat-header h2, .section-header h2 { font-size: 28px; font-weight: 700; }
+.cat-header .see-all, .section-header .see-all { color: #0a8a32; text-decoration: none; font-weight:600; }
+
+/* wrapper MUST be relative for absolute arrows */
+.product-slider-wrapper {
+  position: relative;
+}
+
+/* scrollable row */
+.product-row {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 8px 30px;
+  scroll-behavior: smooth;
+}
+.product-row::-webkit-scrollbar { height: 10px; }
+.product-row::-webkit-scrollbar-thumb { background: #c0c0c0; border-radius: 6px; }
+
+/* cards for slider (make wider like Blinkit) */
+.product-row .product-card {
+  min-width: 220px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(10,20,40,0.05);
+  text-align: center;
+}
+
+/* arrow buttons */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+.arrow.left  { left: 6px; }
+.arrow.right { right: 6px; }
+
+/* hide stray text nodes if any */
+.hidden-text-node { display: none !important; }
+
+/* mobile tweak */
+@media (max-width: 768px) {
+  .product-row { padding: 8px 12px; gap: 12px; }
+  .product-row .product-card { min-width: 160px; }
+}
+
+/* small visual fix: prevent arrow buttons from overlapping content on very narrow screens */
+@media (max-width: 420px) {
+  .arrow { width:40px; height:40px; }
+}
+/* Reduce gap between sections */
+.category-section {
+    margin-bottom: 20px !important;      /* reduce bottom space */
+    padding-bottom: 0 !important;
+}
+
+/* If your product container has fixed height, remove it */
+.product-row {
+    height: auto !important;             /* auto height removes big blank space */
+    padding-bottom: 10px;
+}
+
+/* Remove unwanted space created by slider bar */
+.category-wrapper {
+    margin-bottom: 10px !important;
 }
