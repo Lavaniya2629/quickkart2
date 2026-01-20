@@ -68,3 +68,31 @@ document.querySelectorAll('.product-slider-wrapper').forEach(wrapper => {
   window.addEventListener('resize', updateArrows);
   updateArrows();
 });
+
+<script>
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function () {
+  const value = this.value.toLowerCase();
+
+  // Loop through each category section
+  document.querySelectorAll(".category-section").forEach(section => {
+    let matchFound = false;
+
+    section.querySelectorAll(".product-card").forEach(card => {
+      const name = card.getAttribute("data-name").toLowerCase();
+
+      if (name.includes(value)) {
+        card.style.display = "block";
+        matchFound = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Hide category if no products match
+    section.style.display = matchFound ? "block" : "none";
+  });
+});
+</script>
+
